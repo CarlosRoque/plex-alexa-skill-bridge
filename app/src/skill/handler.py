@@ -95,7 +95,7 @@ def _speak_and_play(handler_input, tracks, description):
     track = tracks[0]
     directive = _build_play_directive(track, PlayBehavior.REPLACE_ALL)
     count = len(tracks)
-    suffix = f" {count} songs queued." if count > 1 else "."
+    suffix = "."
 
     if directive is None:
         logger.error(f"Failed to build play directive for track: {track}")
@@ -126,7 +126,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         return (
             handler_input.response_builder
-            .speak("Welcome to Plex. You can say: play a song, play an artist, play an album, or play a playlist.")
+            .speak("Welcome to Plex.")
             .ask("What would you like to play?")
             .response
         )
