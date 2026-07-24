@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "plex",
+      "invocationName": "my plex",
       "intents": [
         {
           "name": "PlayMusicIntent",
@@ -165,27 +165,191 @@
         {
           "name": "GENRE_TYPE",
           "values": [
-            {"name": {"value": "Rock", "synonyms": ["classic rock", "hard rock", "soft rock"]}},
-            {"name": {"value": "Pop", "synonyms": ["pop music", "top 40"]}},
-            {"name": {"value": "Hip Hop", "synonyms": ["hip-hop", "rap", "hip hop music"]}},
-            {"name": {"value": "Jazz", "synonyms": ["jazz music"]}},
-            {"name": {"value": "Classical", "synonyms": ["classical music", "orchestral"]}},
-            {"name": {"value": "Country", "synonyms": ["country music"]}},
-            {"name": {"value": "Electronic", "synonyms": ["electronic music", "EDM", "techno"]}},
-            {"name": {"value": "R&B", "synonyms": ["R and B", "rhythm and blues", "soul"]}},
-            {"name": {"value": "Metal", "synonyms": ["heavy metal", "metal music"]}},
-            {"name": {"value": "Folk", "synonyms": ["folk music", "acoustic"]}},
-            {"name": {"value": "Blues", "synonyms": ["blues music"]}},
-            {"name": {"value": "Reggae", "synonyms": ["reggae music"]}},
-            {"name": {"value": "Punk", "synonyms": ["punk rock", "punk music"]}},
-            {"name": {"value": "Funk", "synonyms": ["funk music"]}},
-            {"name": {"value": "Latin", "synonyms": ["latin music"]}},
-            {"name": {"value": "Indie", "synonyms": ["indie music", "indie rock", "indie pop"]}},
-            {"name": {"value": "Alternative", "synonyms": ["alternative rock", "alt rock"]}},
-            {"name": {"value": "Dance", "synonyms": ["dance music"]}},
-            {"name": {"value": "Disco", "synonyms": ["disco music"]}},
-            {"name": {"value": "Gospel", "synonyms": ["gospel music"]}},
-            {"name": {"value": "Soundtrack", "synonyms": ["movie soundtrack", "film score"]}}
+            {
+              "name": {
+                "value": "Rock",
+                "synonyms": [
+                  "classic rock",
+                  "hard rock",
+                  "soft rock"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Pop",
+                "synonyms": [
+                  "pop music",
+                  "top 40"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Hip Hop",
+                "synonyms": [
+                  "hip-hop",
+                  "rap",
+                  "hip hop music"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Jazz",
+                "synonyms": [
+                  "jazz music"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Classical",
+                "synonyms": [
+                  "classical music",
+                  "orchestral"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Country",
+                "synonyms": [
+                  "country music"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Electronic",
+                "synonyms": [
+                  "electronic music",
+                  "EDM",
+                  "techno"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "R&B",
+                "synonyms": [
+                  "R and B",
+                  "rhythm and blues",
+                  "soul"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Metal",
+                "synonyms": [
+                  "heavy metal",
+                  "metal music"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Folk",
+                "synonyms": [
+                  "folk music",
+                  "acoustic"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Blues",
+                "synonyms": [
+                  "blues music"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Reggae",
+                "synonyms": [
+                  "reggae music"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Punk",
+                "synonyms": [
+                  "punk rock",
+                  "punk music"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Funk",
+                "synonyms": [
+                  "funk music"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Latin",
+                "synonyms": [
+                  "latin music"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Indie",
+                "synonyms": [
+                  "indie music",
+                  "indie rock",
+                  "indie pop"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Alternative",
+                "synonyms": [
+                  "alternative rock",
+                  "alt rock"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Dance",
+                "synonyms": [
+                  "dance music"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Disco",
+                "synonyms": [
+                  "disco music"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Gospel",
+                "synonyms": [
+                  "gospel music"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Soundtrack",
+                "synonyms": [
+                  "movie soundtrack",
+                  "film score"
+                ]
+              }
+            }
           ]
         },
         {
