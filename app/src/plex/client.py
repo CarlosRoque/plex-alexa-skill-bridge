@@ -51,6 +51,35 @@ def _get(path, **kwargs):
         return None
 
 
+def scrobble(rating_key):
+    """Mark a track as played in Plex: bumps viewCount and sets lastViewedAt.
+
+    This bridge hands Alexa a direct file URL, so Plex only ever sees an
+    anonymous byte-range download and never records playback itself. Without
+    this call, get_recently_played() / get_most_played() -- which sort on
+    lastViewedAt and viewCount -- never reflect anything played via Alexa.
+
+    Uses SESSION directly rather than _get(): /:/scrobble returns an empty
+    body, so _get()'s resp.json() would raise and mask the success.
+    """
+    if not rating_key:
+        return False
+    url = PLEX_URL.rstrip('/') + '/:/scrobble'
+    try:
+        resp = SESSION.get(
+            url,
+            params=_params(key=rating_key,
+                           identifier='com.plexapp.plugins.library'),
+            timeout=10,
+        )
+        resp.raise_for_status()
+        logger.info(f"scrobble: marked ratingKey={rating_key} as played")
+        return True
+    except Exception as e:
+        logger.warning(f"scrobble failed for ratingKey={rating_key}: {e}")
+        return False
+
+
 
 def search_tracks(query):
     """Search for tracks matching the query. Returns list of track dicts."""

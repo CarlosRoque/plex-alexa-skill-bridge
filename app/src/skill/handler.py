@@ -13,7 +13,7 @@ from ask_sdk_model.interfaces.audioplayer import (
     StopDirective, ClearQueueDirective, ClearBehavior
 )
 
-from plex.client import resolve_play_request
+from plex.client import resolve_play_request, scrobble
 from skill.queue import (
     set_queue, get_current_track,
     advance_queue, clear_queue, get_queue_length, get_queue_index,
@@ -398,6 +398,11 @@ class PlaybackFinishedHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         user_id = _user_id(handler_input)
+        # Scrobble the track that just finished BEFORE advancing the queue, so
+        # Plex play history reflects listening done through Alexa.
+        finished = get_current_track(user_id)
+        if finished:
+            scrobble(finished.get('ratingKey'))
         advance_queue(user_id)
         return handler_input.response_builder.response
 
