@@ -1,0 +1,43 @@
+# Standalone (non-Docker) systemd unit. See docs/STANDALONE.md.
+# Substitute YOUR_INSTALL_DIR, YOUR_USER and plex.YOUR_DOMAIN before installing to
+# /etc/systemd/system/plex-alexa-skill.service
+[Unit]
+Description=Plex Alexa Skill Bridge
+Documentation=https://github.com/falk0069/plex-alexa-skill-bridge
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=YOUR_USER
+Group=YOUR_USER
+WorkingDirectory=YOUR_INSTALL_DIR/app
+
+# Loopback when Plex runs on this same host — no need to expose 32400 on the LAN.
+Environment=PLEX_URL=http://127.0.0.1:32400
+# A path, not the literal token: _read_secret() in plex/client.py reads the file
+# when the value starts with "/", keeping the token out of `systemctl show`.
+Environment=PLEX_TOKEN=YOUR_INSTALL_DIR/secrets/plex_token.txt
+Environment=PLEX_PUBLIC_HOSTNAME=plex.YOUR_DOMAIN
+Environment=SKILL_HOSTNAME=plex.YOUR_DOMAIN
+Environment=PORT=5001
+Environment=TZ=Etc/UTC
+# Diagnostics at https://plex.YOUR_DOMAIN/status — set false when not debugging.
+Environment=ENABLE_STATUS_PAGE=false
+# Rejects requests from any other skill. Undocumented upstream but read by
+# app.py and passed to SkillAdapter.
+#Environment=SKILL_ID=amzn1.ask.skill.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+# --workers 1 is mandatory: queue state is per-process and in-memory, so multiple
+# workers hand out interleaved tracks. Bind loopback; the proxy terminates TLS.
+ExecStart=YOUR_INSTALL_DIR/venv/bin/gunicorn \
+    --bind 127.0.0.1:5001 \
+    --workers 1 --threads 4 --timeout 30 \
+    --access-logfile - \
+    src.app:app
+
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,69 @@
+{
+  "_comment": [
+    "Alexa skill manifest for this bridge. Replace plex.YOUR_DOMAIN with your own",
+    "hostname, then create the skill with:",
+    "  ask smapi create-skill-for-vendor --manifest \"$(cat skill/manifest.example.json)\"",
+    "Note: --manifest takes a JSON *string*, not a path. Add --debug to see the",
+    "violations[] array behind an otherwise bare HTTP 400.",
+    "",
+    "The metadata below is deliberately filled in. An Alexa+ household resolves",
+    "which provider handles a request partly from these natural-language fields, so",
+    "a manifest left with template values ('Sample Short Description', example",
+    "phrase 'Alexa open hello world') can make the skill fail to launch at all with",
+    "'Sorry, <name> is not supported on this device' while music requests fall",
+    "through to Amazon Music."
+  ],
+  "manifest": {
+    "manifestVersion": "1.0",
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "name": "My Plex",
+          "summary": "Play music, albums, artists and playlists from your own Plex media server.",
+          "description": "Plays music straight from your personal Plex Media Server on your home network. Ask it to play or shuffle any artist, album, song, playlist, genre or decade from your own library, or ask for your recently played, most played, or recently added music. This plays only the music in your own Plex library - it is not a subscription music service and does not search any online catalog. Say \"ask my plex to play the artist\" followed by an artist name, or \"ask my plex to play the playlist\" followed by one of your Plex playlist names. Supports next, pause and resume during playback.",
+          "examplePhrases": [
+            "Alexa, ask my plex to play the artist Fleetwood Mac",
+            "Alexa, ask my plex to play the album Rumours",
+            "Alexa, ask my plex to play recently added music"
+          ],
+          "keywords": [
+            "plex",
+            "music",
+            "playlist",
+            "private",
+            "home server",
+            "personal music",
+            "library",
+            "self hosted",
+            "stream"
+          ]
+        }
+      },
+      "isAvailableWorldwide": true,
+      "distributionCountries": [],
+      "category": "STREAMING_SERVICE",
+      "testingInstructions": "Personal use only. Requires a Plex Media Server reachable from the skill endpoint. Say \"Alexa, ask my plex to play the artist <name>\" using an artist present in that library."
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "https://plex.YOUR_DOMAIN/skill",
+          "sslCertificateType": "Trusted"
+        },
+        "interfaces": [
+          { "type": "AUDIO_PLAYER" }
+        ]
+      }
+    },
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "usesPersonalInfo": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "containsAds": false,
+      "locales": {
+        "en-US": {}
+      }
+    }
+  }
+}
