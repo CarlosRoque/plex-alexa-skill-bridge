@@ -78,7 +78,12 @@ def search_artists(query):
         return []
     mc = data.get('MediaContainer', {})
     search_results = mc.get('SearchResult', []) or []
-    results = [sr['Metadata'] for sr in search_results if 'Metadata' in sr]
+    all_results = [sr['Metadata'] for sr in search_results if 'Metadata' in sr]
+    # /library/search ignores the type param and returns movies/shows too —
+    # results[0] was matching e.g. the movie "Taylor Swift: The Eras Tour"
+    results = [r for r in all_results if r.get('type') == 'artist']
+    if len(results) < len(all_results):
+        logger.info(f"search_artists: filtered {len(all_results) - len(results)} non-artist result(s)")
     logger.info(f"search_artists: query={query!r} results={len(results)} first={results[0].get('title') if results else None}")
     return results
 
@@ -91,7 +96,12 @@ def search_albums(query):
         return []
     mc = data.get('MediaContainer', {})
     search_results = mc.get('SearchResult', []) or []
-    results = [sr['Metadata'] for sr in search_results if 'Metadata' in sr]
+    all_results = [sr['Metadata'] for sr in search_results if 'Metadata' in sr]
+    # /library/search ignores the type param and returns movies/shows too —
+    # results[0] was matching e.g. the movie "Taylor Swift: The Eras Tour"
+    results = [r for r in all_results if r.get('type') == 'album']
+    if len(results) < len(all_results):
+        logger.info(f"search_albums: filtered {len(all_results) - len(results)} non-album result(s)")
     logger.info(f"search_albums: query={query!r} results={len(results)} first={results[0].get('title') if results else None}")
     return results
 
